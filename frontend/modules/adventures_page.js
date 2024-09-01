@@ -6,20 +6,126 @@ function getCityFromURL(search) {
   // TODO: MODULE_ADVENTURES
   // 1. Extract the city id from the URL's Query Param and return it
 
-}
 
+   // Create a new URLSearchParams object from the search string
+   const params = new URLSearchParams(search);
+  
+   // Get the value of the 'city' parameter
+   const city = params.get('city');
+   
+   // Return the city value 
+   return city;
+
+}
 //Implementation of fetch call with a paramterized input based on city
 async function fetchAdventures(city) {
-  // TODO: MODULE_ADVENTURES
-  // 1. Fetch adventures using the Backend API and return the data
+  try {
+    // Construct the API URL using the city name
+    const backendEndpoint = "http://localhost:8081/adventures";
+    const url = `${backendEndpoint}?city=${city}`;
+    
+    // Fetch data from the API
+    const response = await fetch(url);
 
+    // Check if the response is successful
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
+
+    // Parse the JSON response
+    const data = await response.json();
+
+    // Return the adventures data
+    return data;
+  } catch (error) {
+    console.error("Error fetching adventures:", error);
+    return null;
+  }
 }
+
 
 //Implementation of DOM manipulation to add adventures for the given city from list of adventures
 function addAdventureToDOM(adventures) {
   // TODO: MODULE_ADVENTURES
   // 1. Populate the Adventure Cards and insert those details into the DOM
 
+
+  const container = document.getElementById('data');
+  container.innerHTML = ''; // Clear existing content
+
+  adventures.forEach(adventure => {
+    const responDiv = document.createElement("div");
+    responDiv.className = "col-sm-6 col-lg-3 my-4"; // Bootstrap column classes for responsiveness
+
+    responDiv.innerHTML = `
+  <a href="detail/?adventure=${adventure.id}">
+    <div class="activity-card">
+      <img src="${adventure.image}" alt="${adventure.name}" />
+      <div class="category-banner">${adventure.category}</div>
+      <div class="card-details d-flex justify-content-between w-100 px-3">
+        <div class="text-start">
+          <p>${adventure.name}</p>
+          <p>Duration:</p>
+        </div>
+        <div class="text-end">
+          <p>&#8377 ${adventure.costPerHead}</p>
+          <p>${adventure.duration}hours</p>
+        </div>
+      </div>
+    </div>
+  </a>
+`;
+
+    container.appendChild(responDiv);
+  });
+
+
+//   // Get the container where the cards will be inserted
+//   const dataConatainer = document.getElementById('data');
+//   container.innerHTML = '';
+
+//   // Create the card container responcive
+//   adventures.forEach(adventure => {
+//   const responDiv = document.createElement('div');
+//   responDiv.classList.add('col-6 col-lg-3 mb-3');
+
+//   // Create the card container
+//   const cardDiv = document.createElement('div');
+//   cardDiv.classList.add('activity-card');
+
+//   // Create the image element
+//   const img = document.createElement('img');
+//   img.src = adventure.image;
+//   img.alt = adventure.name;
+//   cardDiv.appendChild(img);
+
+//   // Create the category banner
+//   const banner = document.createElement('div');
+//   banner.classList.add('category-banner');
+//   banner.textContent = adventure.category;
+//   cardDiv.appendChild(banner);
+  
+//   // Create the card details
+//   const details = document.createElement('div');
+//   details.classList.add('card-details');
+//   details.innerHTML=`
+//   <h3>${adventure.name}</h3>
+//   <p>${adventure.costPerHead} ${adventure.currency}</p>
+//   <p>Duration: ${adventure.duration} hours</p>`;
+  
+//   cardDive.appendChild(details);
+
+//   responDiv.appendChild(cardDiv);
+
+//   // Create a link to the adventure details page
+//   const link = document.createElement('a');
+//   link.href = `detail/?adventure=${adventure.id}`;
+//   link.appendChild(responDiv);
+
+//   // Append the card to the container
+//   dataContainer.appendChild(link);
+
+// });
 }
 
 //Implementation of filtering by duration which takes in a list of adventures, the lower bound and upper bound of duration and returns a filtered list of adventures.

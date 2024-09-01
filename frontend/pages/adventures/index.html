@@ -88,7 +88,7 @@
     </div>
     <!-- Footer -->
     <footer>
-        <div class="container">© QTrip 2020</div>
+        <div class="container">© MTrip 2024</div>
     </footer>
 
     <!-- Bootstrap script -->
@@ -126,6 +126,7 @@
 
             //Fetches the City from URL query param (here : window.location.search is an in-built browser property that returns the query param from URL, example: http://localhost:8081/?city=bengaluru => window.location.search would return "?city=bengaluru")
             let city = await getCityFromURL(window.location.search);
+            console.log(city);  // Add this line to log the city value
 
             //Fetches the adventures for the particular city
             adventures = await fetchAdventures(city);
