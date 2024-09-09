@@ -17,8 +17,7 @@ async function init() {
 
 //Implementation of fetch call
 async function fetchCities() {
-  // TODO: MODULE_CITIES
-  // 1. Fetch cities using the Backend API and return the data
+
   try {
     // Make the API call to the /cities endpoint
     const cityData = await fetch("http://localhost:8081/cities");
@@ -41,8 +40,7 @@ async function fetchCities() {
 
 //Implementation of DOM manipulation to add cities
 function addCityToDOM(id, city, description, image) {
-  // TODO: MODULE_CITIES
-  // 1. Populate the City details and insert those details into the DOM
+
 
   // Create a new div element for the city card
   const cardCity = document.createElement("div");

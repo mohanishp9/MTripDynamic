@@ -144,9 +144,6 @@
 
         //executed when onChange() is triggered on duration filter dropdown
         function selectDuration(event) {
-            // TODO: MODULE_FILTERS
-            // 1. Change the DOM to show the selected duration filter. Use the provided input event
-            // 2. Invoke saveFiltersToLocalStorage here
 
             const selectedDuration = event.target.value;
             filters.duration = selectedDuration;
@@ -155,19 +152,21 @@
             const filteredAdventures = filterFunction(adventures, filters);
             addAdventureToDOM(filteredAdventures);
 
+            
+
         }
 
         //executed when clear button is clicked on duration filter dropdown
         function clearDuration(event) {
-            // TODO: MODULE_FILTERS
-            // 1. Change the DOM to clear the Duration filter. Refer clearCategory() below
-            // 2. Invoke saveFiltersToLocalStorage here
 
             filters.duration = "";
             saveFiltersToLocalStorage(filters);
 
             const filteredAdventures = filterFunction(adventures, filters);
             addAdventureToDOM(filteredAdventures);
+
+            const durationSelect = document.getElementById("duration-select");
+            durationSelect.value = "";
 
         }
 
@@ -189,8 +188,6 @@
             // let filteredAdventures = filterFunction(adventures, filters);
             // addAdventureToDOM(filteredAdventures);
 
-            // TODO: MODULE_FILTERS
-            // 1. Invoke saveFiltersToLocalStorage here
 
             const category = event.target.value;
             filters.category.push(category);
@@ -212,9 +209,6 @@
             // let filteredAdventures = filterFunction(adventures, filters);
             // addAdventureToDOM(filteredAdventures);
 
-            // TODO: MODULE_FILTERS
-            // 1. Invoke saveFiltersToLocalStorage here
-
             filters.category = [];
             saveFiltersToLocalStorage(filters);
 
@@ -224,6 +218,9 @@
             addAdventureToDOM(filteredAdventures);
 
             generateFilterPillsAndUpdateDOM(filters);
+
+            const categorySelect = document.getElementById("category-select");
+            categorySelect.value = "";
         }
 
         //helper function
