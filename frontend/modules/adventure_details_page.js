@@ -2,7 +2,6 @@ import config from "../conf/index.js";
 
 //Implementation to extract adventure ID from query params
 function getAdventureIdFromURL(search) {
-
   try {
     const urlParam = new URLSearchParams(search);
     const adventureId = urlParam.get("adventure");
@@ -17,8 +16,6 @@ function getAdventureIdFromURL(search) {
 }
 //Implementation of fetch call with a paramterized input based on adventure ID
 async function fetchAdventureDetails(adventureId) {
-
-
   // Construct the API URL with the adventure ID
 
   try {
@@ -50,8 +47,6 @@ async function fetchAdventureDetails(adventureId) {
 
 //Implementation of DOM manipulation to add adventure details to DOM
 function addAdventureDetailsToDOM(adventure) {
-
-
   if (!adventure) return; // If adventure is null or undefined, exit the function
 
   // Extracting details from the adventure object
@@ -90,8 +85,6 @@ function addAdventureDetailsToDOM(adventure) {
 
 //Implementation of bootstrap gallery component
 function addBootstrapPhotoGallery(images) {
-
-
   // Get the photo-gallery element where the carousel will be inserted
   const photoGallery = document.getElementById("photo-gallery");
 
@@ -120,7 +113,7 @@ function addBootstrapPhotoGallery(images) {
     // Create an img element and set its src attribute
     const img = document.createElement("img");
     img.src = imageUrl;
-    img.className = "d-block w-100"; // Bootstrap class for responsive images
+    img.className = "d-block w-100 "; // Bootstrap class for responsive images
     img.alt = "Adventure Image";
 
     // Append the img element to the carousel-item div
@@ -173,11 +166,10 @@ function addBootstrapPhotoGallery(images) {
 
 //Implementation of conditional rendering of DOM based on availability
 function conditionalRenderingOfReservationPanel(adventure) {
-
   try {
     const reservationPanelAvailable = document.getElementById(
       "reservation-panel-available"
-    );    
+    );
     const reservationPanelSoldOut = document.getElementById(
       "reservation-panel-sold-out"
     );
@@ -204,16 +196,15 @@ function conditionalRenderingOfReservationPanel(adventure) {
 
 //Implementation of reservation cost calculation based on persons
 function calculateReservationCostAndUpdateDOM(adventure, persons) {
-
   try {
-    const reservationCostElement = document.getElementById('reservation-cost');
-    
+    const reservationCostElement = document.getElementById("reservation-cost");
+
     // Ensure persons is a number and default to 0 if not valid
     const numberOfPersons = parseInt(persons, 10) || 0;
-    
+
     // Calculate the total cost
     const totalCost = numberOfPersons * adventure.costPerHead;
-    
+
     // Update the total cost in the DOM
     reservationCostElement.textContent = totalCost;
   } catch (error) {
@@ -223,66 +214,63 @@ function calculateReservationCostAndUpdateDOM(adventure, persons) {
 
 //Implementation of reservation form submission
 function captureFormSubmit(adventure) {
- 
-  const form = document.getElementById('myForm');
+  const form = document.getElementById("myForm");
 
-  form.addEventListener('submit', async (event) => {
-      event.preventDefault(); // Prevent form from refreshing the page
+  form.addEventListener("submit", async (event) => {
+    event.preventDefault(); // Prevent form from refreshing the page
 
-      // Capture form data
-      const name = form.name.value.trim();
-      const date = form.date.value;
-      const person = form.person.value;
+    // Capture form data
+    const name = form.name.value.trim();
+    const date = form.date.value;
+    const person = form.person.value;
 
-      // Backend endpoint
-      const backendEndpoint = 'http://localhost:8081/reservations/new';
+    // Backend endpoint
+    const backendEndpoint = "http://localhost:8081/reservations/new";
 
-      // Data to send
-      const requestBody = {
-          name: name,
-          date: date,
-          person: parseInt(person, 10), // Convert person count to integer
-          adventure: adventure.id
-      };
+    // Data to send
+    const requestBody = {
+      name: name,
+      date: date,
+      person: parseInt(person, 10), // Convert person count to integer
+      adventure: adventure.id,
+    };
 
-      try {
-          // Make POST request
-          const response = await fetch(backendEndpoint, {
-              method: 'POST',
-              headers: {
-                  'Content-Type': 'application/json',
-              },
-              body: JSON.stringify(requestBody),
-          });
+    try {
+      // Make POST request
+      const response = await fetch(backendEndpoint, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(requestBody),
+      });
 
-          const data = await response.json();
+      const data = await response.json();
 
-          if (response.ok && data.success) {
-              // Reservation successful
-              alert('Success!');
-              window.location.reload(); // Refresh the page
-          } else {
-              // Reservation failed
-              alert('Failed!');
-          }
-      } catch (error) {
-          // Handle any network errors or exceptions
-          alert('Failed!');
-          console.error('Error:', error);
+      if (response.ok && data.success) {
+        // Reservation successful
+        alert("Success!");
+        window.location.reload(); // Refresh the page
+      } else {
+        // Reservation failed
+        alert("Failed!");
       }
+    } catch (error) {
+      // Handle any network errors or exceptions
+      alert("Failed!");
+      console.error("Error:", error);
+    }
   });
-
 }
 
 //Implementation of success banner after reservation
 function showBannerIfAlreadyReserved(adventure) {
-
-  const banner = document.getElementById('reserved-banner');
+  const banner = document.getElementById("reserved-banner");
 
   if (adventure.reserved) {
-      banner.style.display = 'block'; // Show the banner if the adventure is already reserved
+    banner.style.display = "block"; // Show the banner if the adventure is already reserved
   } else {
-      banner.style.display = 'none'; // Hide the banner otherwise
+    banner.style.display = "none"; // Hide the banner otherwise
   }
 }
 

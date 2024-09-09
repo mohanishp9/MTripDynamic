@@ -17,7 +17,6 @@ async function init() {
 
 //Implementation of fetch call
 async function fetchCities() {
-
   try {
     // Make the API call to the /cities endpoint
     const cityData = await fetch("http://localhost:8081/cities");
@@ -40,8 +39,6 @@ async function fetchCities() {
 
 //Implementation of DOM manipulation to add cities
 function addCityToDOM(id, city, description, image) {
-
-
   // Create a new div element for the city card
   const cardCity = document.createElement("div");
   cardCity.className = "col-sm-6 col-lg-3 my-4"; // Bootstrap column classes for responsiveness
