@@ -1,5 +1,5 @@
 
-const config = { backendEndpoint: "https://mtripdynamic.onrender.com" };
+const config = { backendEndpoint: "http://127.0.0.1" };
 
 export default config;
 
