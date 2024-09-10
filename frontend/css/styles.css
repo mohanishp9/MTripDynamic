@@ -262,3 +262,8 @@ input[type="number"] {
   padding: 16px;
   margin-bottom: 30px;
 }
+
+.carousel-item img {
+  height: 600px; /* Set your desired height */
+  object-fit: cover; /* Ensure images cover the container without distortion */
+  width: 100%; /* Ens .

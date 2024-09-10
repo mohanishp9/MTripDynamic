@@ -89,79 +89,86 @@ function addBootstrapPhotoGallery(images) {
   // Get the photo-gallery element where the carousel will be inserted
   const photoGallery = document.getElementById("photo-gallery");
 
-  // Clear existing content
+  // Clear any existing content in the photo-gallery
   photoGallery.innerHTML = "";
 
-  // Create carousel container
+  // Create a div element to hold the entire carousel
   const carouselContainer = document.createElement("div");
-  carouselContainer.className = "carousel slide";
-  carouselContainer.id = "adventureCarousel";
+  carouselContainer.className = "carousel slide"; // Bootstrap class for carousel
+  carouselContainer.id = "adventureCarousel"; // Unique ID for the carousel
 
-  // Create carousel-inner container
+  // Create a div element to hold the inner items of the carousel
   const carouselInner = document.createElement("div");
-  carouselInner.className = "carousel-inner";
-  carouselContainer.appendChild(carouselInner);
+  carouselInner.className = "carousel-inner"; // Bootstrap class for carousel items
+  carouselContainer.appendChild(carouselInner); // Append the inner container to the carousel
 
-  // Loop through images and create carousel-item divs
+  // Loop through the images array to create each carousel item
   images.forEach((imageUrl, index) => {
-    // Create a carousel-item div
+    // Create a div element for each carousel item
     const carouselItem = document.createElement("div");
-    carouselItem.className = "carousel-item";
+    carouselItem.className = "carousel-item"; // Bootstrap class for individual items
+    
+    // Set the first item as active (visible) by adding the 'active' class
     if (index === 0) {
-      carouselItem.classList.add("active"); // Set the first item as active
+      carouselItem.classList.add("active");
     }
 
-    // Create an img element and set its src attribute
+    // Create an img element for the image
     const img = document.createElement("img");
-    img.src = imageUrl;
-    img.className = "d-block w-100 "; // Bootstrap class for responsive images
-    img.alt = "Adventure Image";
+    img.src = imageUrl; // Set the image source
+    img.className = "d-block w-100"; // Bootstrap class for responsive images
+    img.alt = "Adventure Image"; // Alt text for accessibility
 
-    // Append the img element to the carousel-item div
+    // Append the img element to the carousel item
     carouselItem.appendChild(img);
 
-    // Append the carousel-item div to the carousel-inner
+    // Append the carousel item to the inner container
     carouselInner.appendChild(carouselItem);
   });
 
-  // Create carousel controls
+  // Create the previous control for navigating to the previous image
   const prevControl = document.createElement("a");
-  prevControl.className = "carousel-control-prev";
-  prevControl.href = "#adventureCarousel";
-  prevControl.role = "button";
-  prevControl.setAttribute("data-bs-slide", "prev");
+  prevControl.className = "carousel-control-prev"; // Bootstrap class for previous control
+  prevControl.href = "#adventureCarousel"; // Link to the carousel
+  prevControl.role = "button"; // Button role for accessibility
+  prevControl.setAttribute("data-bs-slide", "prev"); // Data attribute for Bootstrap functionality
 
+  // Create a span element for the previous control icon
   const prevIcon = document.createElement("span");
-  prevIcon.className = "carousel-control-prev-icon";
-  prevIcon.setAttribute("aria-hidden", "true");
+  prevIcon.className = "carousel-control-prev-icon"; // Bootstrap class for previous control icon
+  prevIcon.setAttribute("aria-hidden", "true"); // Hide from screen readers
   prevControl.appendChild(prevIcon);
 
+  // Create a span element for the previous control text
   const prevText = document.createElement("span");
-  prevText.className = "visually-hidden";
-  prevText.textContent = "Previous";
+  prevText.className = "visually-hidden"; // Visually hidden text for screen readers
+  prevText.textContent = "Previous"; // Text for screen readers
   prevControl.appendChild(prevText);
 
+  // Create the next control for navigating to the next image
   const nextControl = document.createElement("a");
-  nextControl.className = "carousel-control-next";
-  nextControl.href = "#adventureCarousel";
-  nextControl.role = "button";
-  nextControl.setAttribute("data-bs-slide", "next");
+  nextControl.className = "carousel-control-next"; // Bootstrap class for next control
+  nextControl.href = "#adventureCarousel"; // Link to the carousel
+  nextControl.role = "button"; // Button role for accessibility
+  nextControl.setAttribute("data-bs-slide", "next"); // Data attribute for Bootstrap functionality
 
+  // Create a span element for the next control icon
   const nextIcon = document.createElement("span");
-  nextIcon.className = "carousel-control-next-icon";
-  nextIcon.setAttribute("aria-hidden", "true");
+  nextIcon.className = "carousel-control-next-icon"; // Bootstrap class for next control icon
+  nextIcon.setAttribute("aria-hidden", "true"); // Hide from screen readers
   nextControl.appendChild(nextIcon);
 
+  // Create a span element for the next control text
   const nextText = document.createElement("span");
-  nextText.className = "visually-hidden";
-  nextText.textContent = "Next";
+  nextText.className = "visually-hidden"; // Visually hidden text for screen readers
+  nextText.textContent = "Next"; // Text for screen readers
   nextControl.appendChild(nextText);
 
-  // Append controls to the carousel container
+  // Append the previous and next controls to the carousel container
   carouselContainer.appendChild(prevControl);
   carouselContainer.appendChild(nextControl);
 
-  // Append the carousel container to the photo-gallery
+  // Append the completed carousel container to the photo-gallery element
   photoGallery.appendChild(carouselContainer);
 }
 
