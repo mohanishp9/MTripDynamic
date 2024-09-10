@@ -15,7 +15,8 @@ function getCityFromURL(search) {
 async function fetchAdventures(city) {
   try {
     // Construct the API URL using the city name
-    const backendEndpoint = "http://localhost:8081/adventures";
+    const urlData = config.backendEndpoint;
+    const backendEndpoint = `${urlData}/adventures`;
     const url = `${backendEndpoint}?city=${city}`;
 
     // Fetch data from the API

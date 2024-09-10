@@ -19,7 +19,8 @@ async function fetchAdventureDetails(adventureId) {
   // Construct the API URL with the adventure ID
 
   try {
-    const url = `http://localhost:8081/adventures/detail?adventure=${adventureId}`;
+    const urlData = config.backendEndpoint;
+    const url = `${urlData}/adventures/detail?adventure=${adventureId}`;
     // Make the fetch call to the API
     const response = await fetch(url);
 

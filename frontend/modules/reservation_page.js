@@ -5,7 +5,8 @@ async function fetchReservations() {
   
   try {
     // Construct API URL using the backendEndpoint and /reservations API endpoint
-    const url = 'http://localhost:8081/reservations/';
+    const urlData = config.backendEndpoint;
+    const url = `${urlData}/reservations/`;
 
     // Fetch the reservations data
     const response = await fetch(url);

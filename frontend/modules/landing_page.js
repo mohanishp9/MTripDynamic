@@ -19,7 +19,8 @@ async function init() {
 async function fetchCities() {
   try {
     // Make the API call to the /cities endpoint
-    const cityData = await fetch("http://localhost:8081/cities");
+    const urlData = config.backendEndpoint;
+    const cityData = await fetch(`${urlData}/cities`);
 
     if (!cityData.ok) {
       // Check if the response is successful
